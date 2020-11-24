@@ -15,14 +15,14 @@ def main(args):
         ps = sp.PRODUCT_SYMBOLS
         for symbol in ps.keys():
             print("{0}\t- {1}".format(symbol, ps[symbol]["name"]))
-            symbol = input("\nWhich commodity would you like to analyze? ")
-            process(symbol)
-    else:
-        settlements = {}
-        for symbol in args:
-            settlements[symbol] = sp.get_all_settlements(symbol)
-            process(settlements[symbol], symbol)
-        sm.oi_tex_maker(settlements, args)
+        symbol = input("\nWhich commodity would you like to analyze? ")
+        args = [symbol]
+
+    settlements = {}
+    for symbol in args:
+        settlements[symbol] = sp.get_all_settlements(symbol)
+        process(settlements[symbol], symbol)
+    sm.oi_tex_maker(settlements, args)
 
 
 if __name__ == '__main__':
